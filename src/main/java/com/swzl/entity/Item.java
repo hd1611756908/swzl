@@ -10,29 +10,22 @@ import java.util.Date;
 public class Item {
 
     private Integer itemId;
-    private ItemType itemType;
-    private User user;
-    private String title;
-    private String category;
-    private String province;
-    private String address;
-    private Date createtime;
-    private String loseTime;
-    private String detaildesc;
-    private String img1;
-    private String img2;
-    private String img3;
+    private ItemType itemType; //项目类型
+    private User user; //发布设备用户
+    private String provider;//发布人姓名
+    private String title; //标题
+    private String category; //分类
+    private String province; //省市区
+    private String address;  //详细地点
+    private Date createtime;  //创建时间
+    private String loseTime;  //丢失时间
+    private String detaildesc; //详情描述
+    private String img1;   //图片1
+    private String img2;   //图片2
+    private String img3;   //图片3
 
     public Integer getItemId() {
         return itemId;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public void setItemId(Integer itemId) {
@@ -45,6 +38,22 @@ public class Item {
 
     public void setItemType(ItemType itemType) {
         this.itemType = itemType;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getProvider() {
+        return provider;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
     }
 
     public String getTitle() {
@@ -133,6 +142,7 @@ public class Item {
                 "itemId=" + itemId +
                 ", itemType=" + itemType +
                 ", user=" + user +
+                ", provider='" + provider + '\'' +
                 ", title='" + title + '\'' +
                 ", category='" + category + '\'' +
                 ", province='" + province + '\'' +

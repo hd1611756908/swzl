@@ -28,4 +28,11 @@ public interface ItemTypeMapper {
      */
     ItemType queryItemTypeByName(String name);
 
+    /**
+     * 通过id查询类型
+     * @param typeId
+     * @return
+     */
+    ItemType queryItemById(Integer typeId);
+
 }

@@ -11,4 +11,8 @@
     <select id="queryItemTypeByName" resultType="itemType">
         SELECT * FROM itemtype WHERE name=#{name}
     </select>
+    
+    <select id="queryItemById" resultType="itemType">
+        SELECT * FROM itemtype WHERE id=#{typeId}
+    </select>
 </mapper>

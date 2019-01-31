@@ -36,4 +36,10 @@ public class ItemTypeMapperTest extends SwzlApplicationTests {
         ItemType itemType = itemTypeMapper.queryItemTypeByName(ItemTypeEnums.XCQS.getMssage());
         LOGGER.info("itemType={}",itemType);
     }
+
+    @Test
+    public void queryItemById(){
+        ItemType itemType = itemTypeMapper.queryItemById(1000);
+        LOGGER.info("itemType = {}",itemType);
+    }
 }

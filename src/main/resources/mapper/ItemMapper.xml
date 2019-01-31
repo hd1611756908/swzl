@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swzl.mapper.ItemMapper">
+
+    <insert id="addItem" parameterType="item" useGeneratedKeys="true" keyProperty="itemId">
+        INSERT INTO item
+        (itemtype_id,
+         user_id,
+         provider,
+         title,
+         category,
+         province,
+         address,
+         createtime,
+         losetime,
+         detaildesc,
+         img1,
+         img2,
+         img3)
+        VALUES
+        (#{itemType.id},
+         #{user.id},
+         #{provider},
+         #{title},
+         #{category},
+         #{province},
+         #{address},
+         now(),
+         #{loseTime},
+         #{detaildesc},
+         #{img1},
+         #{img2},
+         #{img3})
+    </insert>
+
+    <update id="updateItem" useGeneratedKeys="true" keyProperty="itemId" parameterType="item">
+        UPDATE item
+        <set>
+            <if test="itemType!=null and itemType.id!=null">itemtype_id=#{itemType.id},</if>
+            <if test="user!=null and user.id!=null">user_id=#{user.id},</if>
+            <if test="provider!=null">provider=#{provider},</if>
+            <if test="title!=null">title=#{title},</if>
+            <if test="category!=null">category=#{category},</if>
+            <if test="province!=null">province=#{province},</if>
+            <if test="address!=null">address=#{address},</if>
+            <if test="loseTime!=null">loseTime=#{loseTime},</if>
+            <if test="detaildesc!=null">detaildesc=#{detaildesc},</if>
+            <if test="img1!=null">img1=#{img1},</if>
+            <if test="img2!=null">img2=#{img2},</if>
+            <if test="img3!=null">img3=#{img3}</if>
+        </set>
+        <where>
+            item_id=#{itemId}
+        </where>
+    </update>
+
+    <resultMap id="itemMap" type="item">
+        <id property="itemId" column="item_id"/>
+        <result property="provider" column="provider"/>
+        <result property="title" column="title"/>
+        <result property="category" column="category"/>
+        <result property="province" column="province"/>
+        <result property="address" column="address"/>
+        <result property="createtime" column="createtime"/>
+        <result property="loseTime" column="losetime"/>
+        <result property="detaildesc" column="detaildesc"/>
+        <result property="img1" column="img1"/>
+        <result property="img2" column="img2"/>
+        <result property="img3" column="img3"/>
+        <association property="itemType" javaType="itemType" column="itemtype_id" select="com.swzl.mapper.ItemTypeMapper.queryItemById"/>
+        <association property="user" javaType="user" column="user_id" select="com.swzl.mapper.UserMapper.queryUserById"/>
+    </resultMap>
+
+
+    <select id="queryItemList" resultMap="itemMap">
+      SELECT * FROM item
+    </select>
+
+    <select id="queryItemByItemId" resultMap="itemMap" parameterType="int">
+      SELECT * FROM item WHERE item_id=#{itemId}
+    </select>
+    
+    <delete id="deleteItem" parameterType="int">
+        DELETE FROM item WHERE item_id=#{itemId}
+    </delete>
+
+</mapper>
