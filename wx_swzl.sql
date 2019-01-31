@@ -41,6 +41,8 @@ INSERT INTO itemtype(name) VALUES('寻人启事'),('寻物启事'),('寻宠启�
 CREATE TABLE item(
   item_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
   itemtype_id INT NOT NULL COMMENT '项目类型ID关联项目类型表的主键',
+  user_id INT NOT NULL COMMENT '关联用户表主键',
+  publish_user VARCHAR (20) NOT NULL COMMENT '发布人',
   title VARCHAR(100) NOT NULL COMMENT '项目标题',
   category VARCHAR(100) NOT NULL COMMENT '丢失物品种类 如: 笔记本、手机',
   province VARCHAR(100) NOT NULL COMMENT '丢失区域 如: 黑龙江省-哈尔滨市-南岗区',
@@ -55,8 +57,18 @@ CREATE TABLE item(
 
 --外键关联
 ALTER TABLE item ADD FOREIGN KEY(`itemtype_id`) REFERENCES itemtype(`id`);
+ALTER TABLE item ADD FOREIGN KEY(`user_id`) REFERENCES user(`id`);
 
+-- 收藏表
+CREATE TABLE itemcollection(
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+  user_id INT NOT NULL COMMENT '关联用户表主键',
+  item_id INT NOT NULL COMMENT '项目表的主键'
+)ENGINE=InnoDB AUTO_INCREMENT=1000 CHARSET=UTF8 COMMENT='收藏表';
 
+-- 外键关联
+ALTER TABLE itemcollection ADD FOREIGN KEY(`user_id`) REFERENCES user(`id`);
+ALTER TABLE itemcollection ADD FOREIGN KEY(`item_id`) REFERENCES item(`item_id`);
 
 
 

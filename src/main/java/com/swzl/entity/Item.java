@@ -10,7 +10,8 @@ import java.util.Date;
 public class Item {
 
     private Integer itemId;
-    private  ItemType itemType;
+    private ItemType itemType;
+    private User user;
     private String title;
     private String category;
     private String province;
@@ -24,6 +25,14 @@ public class Item {
 
     public Integer getItemId() {
         return itemId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setItemId(Integer itemId) {
@@ -123,6 +132,7 @@ public class Item {
         return "Item{" +
                 "itemId=" + itemId +
                 ", itemType=" + itemType +
+                ", user=" + user +
                 ", title='" + title + '\'' +
                 ", category='" + category + '\'' +
                 ", province='" + province + '\'' +
