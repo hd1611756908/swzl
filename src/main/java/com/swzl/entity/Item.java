@@ -18,6 +18,7 @@ public class Item {
     private String province; //省市区
     private String address;  //详细地点
     private Date createtime;  //创建时间
+    private Date updatetime; //更新时间
     private String loseTime;  //丢失时间
     private String detaildesc; //详情描述
     private String img1;   //图片1
@@ -96,6 +97,14 @@ public class Item {
         this.createtime = createtime;
     }
 
+    public Date getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
+    }
+
     public String getLoseTime() {
         return loseTime;
     }
@@ -148,6 +157,7 @@ public class Item {
                 ", province='" + province + '\'' +
                 ", address='" + address + '\'' +
                 ", createtime=" + createtime +
+                ", updatetime=" + updatetime +
                 ", loseTime='" + loseTime + '\'' +
                 ", detaildesc='" + detaildesc + '\'' +
                 ", img1='" + img1 + '\'' +

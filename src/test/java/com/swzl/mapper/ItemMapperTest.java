@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
  * @Auther: hushuang
  * @Date: 2019/1/31 19:45
@@ -88,7 +86,7 @@ public class ItemMapperTest extends SwzlApplicationTests {
 
     @Test
     public void queryItemList() {
-        List<Item> items = itemMapper.queryItemList();
+        List<Item> items = itemMapper.queryItemList(1000);
         LOGGER.info("items = {}",items);
     }
 
@@ -97,4 +95,12 @@ public class ItemMapperTest extends SwzlApplicationTests {
         Item item = itemMapper.queryItemByItemId(1001);
         LOGGER.info("item = {}",item);
     }
+
+    @Test
+    public void queryItemList_() {
+        List<Item> items = itemMapper.queryItemList_();
+        LOGGER.info("items = {}",items);
+    }
+
+
 }

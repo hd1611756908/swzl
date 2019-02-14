@@ -2,6 +2,7 @@ package com.swzl.mapper;
 
 import com.swzl.entity.Item;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -39,9 +40,23 @@ public interface ItemMapper {
 
     /**
      * 获取项目列表
+     * @param userId
      * @return
      */
-    List<Item> queryItemList();
+    List<Item> queryItemList(@Param("userId") Integer userId);
+
+    /**
+     * 根据typeID获取项目列表
+     * @param typeId
+     * @return
+     */
+    List<Item> queryItemListByTypeId(@Param("typeId") Integer typeId);
+
+    /**
+     * 获取项目列表
+     * @return
+     */
+    List<Item> queryItemList_();
 
     /**
      * 根据项目ID获取项目详情

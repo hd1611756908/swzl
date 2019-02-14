@@ -19,4 +19,12 @@ public interface UserMapper {
      * @return
      */
     User queryUserById(Integer userId);
+
+
+    /**
+     * 通过openid查询用户信息
+     * @param openid
+     * @return
+     */
+    User queryUserByOpenId(String openid);
 }

@@ -28,4 +28,13 @@ public class UserMapperTest extends SwzlApplicationTests {
         LOGGER.info("user = {}",user);
 
     }
+
+    @Test
+    public void queryUserByOpenId() {
+
+        User user = userMapper.queryUserByOpenId("100dsadasdasdas01");
+        LOGGER.info("user = {}",user);
+
+    }
+
 }

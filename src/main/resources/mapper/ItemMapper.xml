@@ -76,11 +76,26 @@
 
     <select id="queryItemList" resultMap="itemMap">
       SELECT * FROM item
+      <where>
+          <if test="userId != null">user_id=#{userId}</if>
+      </where>
     </select>
+
+    <select id="queryItemList_" resultMap="itemMap" parameterType="int">
+      SELECT * FROM item
+    </select>
+
+
 
     <select id="queryItemByItemId" resultMap="itemMap" parameterType="int">
       SELECT * FROM item WHERE item_id=#{itemId}
     </select>
+
+
+    <select id="queryItemListByTypeId" resultMap="itemMap" parameterType="int">
+      SELECT * FROM item WHERE itemtype_id=#{typeId}
+    </select>
+
     
     <delete id="deleteItem" parameterType="int">
         DELETE FROM item WHERE item_id=#{itemId}
