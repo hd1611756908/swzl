@@ -52,11 +52,6 @@ public interface ItemMapper {
      */
     List<Item> queryItemListByTypeId(@Param("typeId") Integer typeId);
 
-    /**
-     * 获取项目列表
-     * @return
-     */
-    List<Item> queryItemList_();
 
     /**
      * 根据项目ID获取项目详情

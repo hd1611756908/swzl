@@ -96,11 +96,6 @@ public class ItemMapperTest extends SwzlApplicationTests {
         LOGGER.info("item = {}",item);
     }
 
-    @Test
-    public void queryItemList_() {
-        List<Item> items = itemMapper.queryItemList_();
-        LOGGER.info("items = {}",items);
-    }
 
 
 }

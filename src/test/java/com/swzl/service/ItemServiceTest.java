@@ -1,11 +1,12 @@
 package com.swzl.service;
 
 import com.swzl.SwzlApplicationTests;
-import com.swzl.dto.Page;
+import com.swzl.dto.ItemPage;
+import com.swzl.entity.Item;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.Assert.*;
+import java.util.List;
 
 /**
  * @Auther: hushuang
@@ -18,8 +19,12 @@ public class ItemServiceTest extends SwzlApplicationTests {
     private ItemService itemService;
 
     @Test
-    public void queryItemList_() {
-        Page page = itemService.queryItemList_(1, 4);
-        System.out.println(page);
+    public void queryItemListByTypeId() {
+        ItemPage itemPage = itemService.queryItemListByTypeId(1, 2,1001);
+        List<Item> items = itemPage.getItems();
+        for (Item item : items) {
+            System.out.println(item);
+        }
+
     }
 }

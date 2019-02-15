@@ -1,19 +1,17 @@
 package com.swzl.controller;
 
+import com.swzl.dto.ItemPage;
 import com.swzl.dto.ItemRequest;
-import com.swzl.dto.Page;
 import com.swzl.entity.Item;
 import com.swzl.entity.ItemType;
 import com.swzl.entity.User;
 import com.swzl.service.ItemService;
+import com.swzl.service.ItemTypeService;
 import com.swzl.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +35,8 @@ public class ItemController {
     private ItemService itemService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ItemTypeService itemTypeService;
 
 
     @PostMapping("/publishItem")
@@ -94,15 +94,18 @@ public class ItemController {
 
 
     /**
-     * 获取项目列表/或者获取我的项目列表
+     * 获取项目列表
      * @param pageNo : 当前页
      * @param pageSize : 每页的页容量
-     * @param userId : 用户ID
      * @return
      */
-    public Page getPageItems(int pageNo,int pageSize,Integer userId){
-
-        return null;
+    @GetMapping(value = "/getPageItems")
+    public ItemPage getPageItems(int pageNo, int pageSize,String typeName){
+        System.out.println(pageNo);
+        System.out.println(pageSize);
+        System.out.println(typeName);
+        ItemType itemType = itemTypeService.queryItemTypeByName(typeName);
+        return itemService.queryItemListByTypeId(pageNo,pageSize,itemType.getId());
     }
 
 
