@@ -70,10 +70,13 @@ public class ItemController {
         List<String> imgs = request.getImglist();
         if(imgs!=null && imgs.size()==1){
             item.setImg1(imgs.get(0));
+            item.setImg2("");
+            item.setImg3("");
         }
         if(imgs!=null && imgs.size()==2){
             item.setImg1(imgs.get(0));
             item.setImg2(imgs.get(1));
+            item.setImg3("");
         }
         if(imgs!=null && imgs.size()==3){
             item.setImg1(imgs.get(0));
