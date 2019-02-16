@@ -11,5 +11,9 @@
     <select id="queryUserByOpenId" resultType="user">
         SELECT * FROM user WHERE open_id=#{openid}
     </select>
+    
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user(name,gender,open_id) VALUES (#{name},#{gender},#{openId})
+    </insert>
 
 </mapper>

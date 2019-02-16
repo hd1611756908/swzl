@@ -37,4 +37,16 @@ public class UserMapperTest extends SwzlApplicationTests {
 
     }
 
+    @Test
+    public void addUser(){
+
+        User user = new User();
+
+        user.setName("李雷");
+        user.setGender(1);
+        user.setOpenId("d=dsad=sadas");
+        int row = userMapper.addUser(user);
+        System.out.println(row);
+    }
+
 }

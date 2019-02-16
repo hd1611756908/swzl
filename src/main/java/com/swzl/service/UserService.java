@@ -21,4 +21,9 @@ public class UserService {
     public User queryUserByOpenId(String openid){
         return userMapper.queryUserByOpenId(openid);
     }
+
+    @Transactional
+    public int addUser(User user){
+        return userMapper.addUser(user);
+    }
 }

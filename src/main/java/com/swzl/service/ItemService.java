@@ -143,8 +143,6 @@ public class ItemService {
             itemResult.setImgs(imgs);
             itemResults.add(itemResult);
         }
-
-        System.out.println(itemResults);
         page.setItems(itemResults);
 
         return page;

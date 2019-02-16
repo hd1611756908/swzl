@@ -11,9 +11,7 @@ public class User {
     private Integer id;
     private String openId;
     private String name;
-    private String password;
     private int gender;
-    private Role role ;
 
     public Integer getId() {
         return id;
@@ -39,13 +37,7 @@ public class User {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public int getGender() {
         return gender;
@@ -55,23 +47,13 @@ public class User {
         this.gender = gender;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", openId='" + openId + '\'' +
                 ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
                 ", gender=" + gender +
-                ", role=" + role +
                 '}';
     }
 }

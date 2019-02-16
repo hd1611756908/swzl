@@ -27,4 +27,11 @@ public interface UserMapper {
      * @return
      */
     User queryUserByOpenId(String openid);
+
+    /**
+     * 插入用户
+     * @param user
+     * @return
+     */
+    int addUser(User user);
 }

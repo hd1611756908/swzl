@@ -45,7 +45,6 @@ public class ItemController {
 
     @PostMapping(value = "/updateItem")
     public String updateItem(@RequestBody ItemRequest request){
-        System.out.println(request);
 
         Item item = new Item();
 
@@ -87,7 +86,6 @@ public class ItemController {
             item.setImg2(imgs.get(1));
             item.setImg3(imgs.get(2));
         }
-        System.out.println(item);
         int row = itemService.updateItem(item);
         if(row>0){
             return "ok";
@@ -99,11 +97,15 @@ public class ItemController {
 
     @GetMapping(value = "/queryItemList")
     public List<ItemResult> queryItemList(String openid){
-        System.out.println(openid);
         User user = userService.queryUserByOpenId(openid);
-        System.out.println(user);
-        List<ItemResult> itemResults = itemService.queryItemList(user.getId());
-        return itemResults;
+        if(user!=null){
+            List<ItemResult> itemResults = itemService.queryItemList(user.getId());
+            return itemResults;
+        }else{
+            return null;
+        }
+
+
     }
 
 
