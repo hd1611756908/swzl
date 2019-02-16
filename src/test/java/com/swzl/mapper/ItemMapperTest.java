@@ -54,7 +54,7 @@ public class ItemMapperTest extends SwzlApplicationTests {
     public void updateItem() {
 
         Item item = new Item();
-        item.setItemId(1001);
+        item.setItemId(48);
         ItemType itemType = new ItemType();
         itemType.setId(1000);
         item.setItemType(itemType);
@@ -92,7 +92,7 @@ public class ItemMapperTest extends SwzlApplicationTests {
 
     @Test
     public void queryItemByItemId() {
-        Item item = itemMapper.queryItemByItemId(1001);
+        Item item = itemMapper.queryItemByItemId(26);
         LOGGER.info("item = {}",item);
     }
 

@@ -8,57 +8,56 @@ import java.util.List;
 
 /**
  * @Auther: hushuang
- * @Date: 2019/2/14 11:00
+ * @Date: 2019/2/16 14:49
  * @Description:
  */
-public class ItemRequest {
-
-    private int itemId;
-    private int itemtypeid; //项目类型
-    private String openid;  //openid
-    private String username;//发布人姓名
-    private String title;   //标题
+public class ItemUpdate {
+    private Integer itemId;
+    private ItemType itemType; //项目类型
+    private User user; //发布设备用户
+    private String provider;//发布人姓名
+    private String title; //标题
     private String category; //分类
     private List<String> province; //省市区
     private String address;  //详细地点
-    private String losetime;  //丢失时间
+    private Date createtime;  //创建时间
+    private String loseTime;  //丢失时间
     private String detaildesc; //详情描述
-    private List<String> imgs;   //图片列表
-    private List<String> imglist; //http图片
+    private List<String> imgs;   //图片
 
-    public ItemRequest() {
+    public ItemUpdate() {
     }
 
-    public int getItemId() {
+    public Integer getItemId() {
         return itemId;
     }
 
-    public void setItemId(int itemId) {
+    public void setItemId(Integer itemId) {
         this.itemId = itemId;
     }
 
-    public int getItemtypeid() {
-        return itemtypeid;
+    public ItemType getItemType() {
+        return itemType;
     }
 
-    public void setItemtypeid(int itemtypeid) {
-        this.itemtypeid = itemtypeid;
+    public void setItemType(ItemType itemType) {
+        this.itemType = itemType;
     }
 
-    public String getOpenid() {
-        return openid;
+    public User getUser() {
+        return user;
     }
 
-    public void setOpenid(String openid) {
-        this.openid = openid;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getUsername() {
-        return username;
+    public String getProvider() {
+        return provider;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setProvider(String provider) {
+        this.provider = provider;
     }
 
     public String getTitle() {
@@ -93,12 +92,20 @@ public class ItemRequest {
         this.address = address;
     }
 
-    public String getLosetime() {
-        return losetime;
+    public Date getCreatetime() {
+        return createtime;
     }
 
-    public void setLosetime(String losetime) {
-        this.losetime = losetime;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    public String getLoseTime() {
+        return loseTime;
+    }
+
+    public void setLoseTime(String loseTime) {
+        this.loseTime = loseTime;
     }
 
     public String getDetaildesc() {
@@ -117,29 +124,21 @@ public class ItemRequest {
         this.imgs = imgs;
     }
 
-    public List<String> getImglist() {
-        return imglist;
-    }
-
-    public void setImglist(List<String> imglist) {
-        this.imglist = imglist;
-    }
-
     @Override
     public String toString() {
-        return "ItemRequest{" +
+        return "ItemUpdate{" +
                 "itemId=" + itemId +
-                ", itemtypeid=" + itemtypeid +
-                ", openid='" + openid + '\'' +
-                ", username='" + username + '\'' +
+                ", itemType=" + itemType +
+                ", user=" + user +
+                ", provider='" + provider + '\'' +
                 ", title='" + title + '\'' +
                 ", category='" + category + '\'' +
                 ", province=" + province +
                 ", address='" + address + '\'' +
-                ", losetime='" + losetime + '\'' +
+                ", createtime=" + createtime +
+                ", loseTime='" + loseTime + '\'' +
                 ", detaildesc='" + detaildesc + '\'' +
                 ", imgs=" + imgs +
-                ", imglist=" + imglist +
                 '}';
     }
 }

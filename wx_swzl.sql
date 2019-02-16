@@ -59,16 +59,7 @@ CREATE TABLE item(
 ALTER TABLE item ADD FOREIGN KEY(`itemtype_id`) REFERENCES itemtype(`id`);
 ALTER TABLE item ADD FOREIGN KEY(`user_id`) REFERENCES user(`id`);
 
--- 收藏表
-CREATE TABLE itemcollection(
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
-  user_id INT NOT NULL COMMENT '关联用户表主键',
-  item_id INT NOT NULL COMMENT '项目表的主键'
-)ENGINE=InnoDB AUTO_INCREMENT=1000 CHARSET=UTF8 COMMENT='收藏表';
 
--- 外键关联
-ALTER TABLE itemcollection ADD FOREIGN KEY(`user_id`) REFERENCES user(`id`);
-ALTER TABLE itemcollection ADD FOREIGN KEY(`item_id`) REFERENCES item(`item_id`);
 
 
 

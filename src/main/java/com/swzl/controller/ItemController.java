@@ -2,6 +2,8 @@ package com.swzl.controller;
 
 import com.swzl.dto.ItemPage;
 import com.swzl.dto.ItemRequest;
+import com.swzl.dto.ItemResult;
+import com.swzl.dto.ItemUpdate;
 import com.swzl.entity.Item;
 import com.swzl.entity.ItemType;
 import com.swzl.entity.User;
@@ -17,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -37,6 +40,111 @@ public class ItemController {
     private UserService userService;
     @Autowired
     private ItemTypeService itemTypeService;
+
+
+
+    @PostMapping(value = "/updateItem")
+    public String updateItem(@RequestBody ItemRequest request){
+        System.out.println(request);
+
+        Item item = new Item();
+
+        item.setItemId(request.getItemId());
+        //分类ID
+        ItemType itemType = new ItemType();
+        itemType.setId(request.getItemtypeid());
+        item.setItemType(itemType);
+        //用户ID
+        String openid = request.getOpenid();
+        User user = userService.queryUserByOpenId(openid);
+        item.setUser(user);
+        //发布人
+        item.setProvider(request.getUsername());
+        //标题
+        item.setTitle(request.getTitle());
+        //分类
+        item.setCategory(request.getCategory());
+        //省市区
+        item.setProvince(request.getProvince()+"");
+        //详细地址
+        item.setAddress(request.getAddress());
+        item.setCreatetime(new Date());
+        //丢失时间
+        item.setLoseTime(request.getLosetime());
+        //详情描述
+        item.setDetaildesc(request.getDetaildesc());
+        //图片
+        List<String> imgs = request.getImglist();
+        if(imgs!=null && imgs.size()==1){
+            item.setImg1(imgs.get(0));
+        }
+        if(imgs!=null && imgs.size()==2){
+            item.setImg1(imgs.get(0));
+            item.setImg2(imgs.get(1));
+        }
+        if(imgs!=null && imgs.size()==3){
+            item.setImg1(imgs.get(0));
+            item.setImg2(imgs.get(1));
+            item.setImg3(imgs.get(2));
+        }
+        System.out.println(item);
+        int row = itemService.updateItem(item);
+        if(row>0){
+            return "ok";
+        }else{
+            return "error";
+        }
+    }
+
+
+    @GetMapping(value = "/queryItemList")
+    public List<ItemResult> queryItemList(String openid){
+        System.out.println(openid);
+        User user = userService.queryUserByOpenId(openid);
+        System.out.println(user);
+        List<ItemResult> itemResults = itemService.queryItemList(user.getId());
+        return itemResults;
+    }
+
+
+    @GetMapping(value = "/queryItemByItemId")
+    public ItemResult queryItemByItemId(int itemId){
+
+        return itemService.queryItemByItemId(itemId);
+
+    }
+
+
+    @GetMapping(value = "/queryItemByItemId_")
+    public ItemUpdate queryItemUpdateByItemId(int itemId){
+        ItemResult itemResult = itemService.queryItemByItemId_(itemId);
+        ItemUpdate itemUpdate = new ItemUpdate();
+        itemUpdate.setItemId(itemResult.getItemId());
+        itemUpdate.setItemType(itemResult.getItemType());
+        itemUpdate.setUser(itemResult.getUser());
+        itemUpdate.setProvider(itemResult.getProvider());
+        itemUpdate.setTitle(itemResult.getTitle());
+        itemUpdate.setCategory(itemResult.getCategory());
+        itemUpdate.setAddress(itemResult.getAddress());
+        itemUpdate.setCreatetime(itemResult.getCreatetime());
+        itemUpdate.setLoseTime(itemResult.getLoseTime());
+        itemUpdate.setDetaildesc(itemResult.getDetaildesc());
+        itemUpdate.setImgs(itemResult.getImgs());
+        String s = itemResult.getProvince();
+
+        s=s.substring(1,s.length()-1);
+        String[] ss = s.split(",");
+        List<String> sl = new ArrayList<>();
+
+        for (String s1 : ss) {
+            sl.add(s1.trim());
+        }
+        itemUpdate.setProvince(sl);
+
+        return itemUpdate;
+    }
+
+
 
 
     @PostMapping("/publishItem")
@@ -101,9 +209,6 @@ public class ItemController {
      */
     @GetMapping(value = "/getPageItems")
     public ItemPage getPageItems(int pageNo, int pageSize,String typeName){
-        System.out.println(pageNo);
-        System.out.println(pageSize);
-        System.out.println(typeName);
         ItemType itemType = itemTypeService.queryItemTypeByName(typeName);
         return itemService.queryItemListByTypeId(pageNo,pageSize,itemType.getId());
     }
@@ -139,5 +244,15 @@ public class ItemController {
         String imgUrl = "http://localhost:8080/upload/"+filename;
 
         return imgUrl;
+    }
+
+    @GetMapping(value = "/deleteItem")
+    public String deleteItem(int itemId){
+        int row = itemService.deleteItem(itemId);
+        if(row>0){
+            return "ok";
+        }else{
+            return "error";
+        }
     }
 }

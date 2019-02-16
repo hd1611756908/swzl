@@ -14,7 +14,7 @@ public class ItemPage {
     private boolean hasnext;
     private Integer pageno;
     private Integer pagesize;
-    private List<Item> items;
+    private List<ItemResult> items;
 
     public ItemPage() {
     }
@@ -43,11 +43,11 @@ public class ItemPage {
         this.pagesize = pagesize;
     }
 
-    public List<Item> getItems() {
+    public List<ItemResult> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(List<ItemResult> items) {
         this.items = items;
     }
 
